@@ -9,35 +9,35 @@ const myhttp = require('http');
 const fs = require("fs").promises;
 
 // create a function to respond to http requests
-const requestListener = function( myrequest, myresponse ) {
-    console.log( myrequest.url );
+const requestListener = function( therequest, theresponse ) {
+    console.log( therequest.url );
 
-    if ( myrequest.url === "/" ) {
+    if ( therequest.url === "/" ) {
         // check request url, if root, return html files
         // special variable ___dirname has absolute path of where node code is running
-        fs.readFile(__dirname + "/page.html")
+        fs.readFile(__dirname + "/newpage.html")
             .then(
-                contents => {
+                newname => {
                     //set http response header entry
-                    myresponse.setHeader("Content-Type", "text/html; charset=UTF-8");
+                    theresponse.setHeader("Content-Type", "text/html; charset=UTF-8");
                     // return 200 OK http status code
-                    myresponse.writeHead(200);
+                    theresponse.writeHead(200);
                     // send back files contents + close response
-                    myresponse.end(contents);
+                    theresponse.end(newname);
                 }
 
             );
     } else {
         // if request url not root, return json file
-        fs.readFile(__dirname + "/data.json")
+        fs.readFile(__dirname + "/test.json")
             .then(
-                contents => {
+                newname => {
                     //set http response header entry
-                    myresponse.setHeader("Content-Type", "application/json; charset=UTF-8");
+                    theresponse.setHeader("Content-Type", "application/json; charset=UTF-8");
                     // return 200 OK http status code
-                    myresponse.writeHead(200);
+                    theresponse.writeHead(200);
                     // send back files contents + close response
-                    myresponse.end(contents);
+                    theresponse.end(newname);
                 }
 
             );
@@ -58,7 +58,7 @@ const requestListener = function( myrequest, myresponse ) {
 // createServer() takes some arguments to make it provide a useful http server
 // 1: function (block of code) that will be run whenever the server receives an http request
 
-let myserver = myhttp.createServer(
+let theserver = myhttp.createServer(
     // createServer() uses our funtion to run when a request comes in
     requestListener
     
@@ -83,6 +83,6 @@ let myserver = myhttp.createServer(
 // ask http to start listening on a tcp port for incoming http requests
 // listen() takes 2 args: 1: tcp port #, 2: string of the ip address to listen (0.0.0.0)
 // http://127.0.0.1:8080
-myserver.listen(8080, "127.0.0.1");
+theserver.listen(8080, "127.0.0.1");
 
 // console.log("server has started");

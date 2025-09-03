@@ -10,8 +10,8 @@
     </head>
     <body>
         <!-- create an element that can be the root element for your react application  -->
-        <div id="myApp"></div>
-        <!-- load our custom cript with react component -->
+        <div id="myFirst"></div>
+        <!-- load our custom script with react component -->
         <script data-type="module" data-presets="react" type="text/babel">
             "use strict";
 
@@ -21,13 +21,13 @@
             import { createRoot } from 'https://cdn.jsdelivr.net/npm/react-dom@19.1.1/client/+esm';
                 
             // define a react page component (some JSX that will get react to make html elements)
-            function ProjectList(props) {
+            function ProjectList(sorry) {
                 // return some output for the component using JSX
                 return  <div>
-                            <ol>
+                            <ul>
                             {
-                                // use map() to loop thru arry passed in props.list
-                                props.list.map(
+                                // use map() to loop thru arry passed in sorry.list
+                                sorry.list.map(
                                     // copy current array value into item and pass wo arrow function
                                     (item,index) => (
                                         <li key={index}>
@@ -41,7 +41,7 @@
                                 )
 
                             }
-                            </ol>
+                            </ul>
                     
                         </div>
             }
@@ -49,16 +49,16 @@
             // getJSON 2 arguments: URL, a function that receives JSON
             $.getJSON(
                 "x",
-                function(jsonFromJquery) {
-                    console.log(jsonFromJquery);
+                function(canIChange) {
+                    console.log(canIChange);
                     // fire up React and build our app
                     // find html element
-                    const myElement = document.getElementById('myApp');
+                    const firstElement = document.getElementById('myFirst');
                     // reactDOM createRoot() to identify root HTML element for app
-                    const myRoot = createRoot(myElement);
+                    const firstRoot = createRoot(firstElement);
                     // then call react render() to output componenet into existing element
-                    myRoot.render(
-                        <ProjectList list={jsonFromJquery} />
+                    firstRoot.render(
+                        <ProjectList list={canIChange} />
                     )
 
 
