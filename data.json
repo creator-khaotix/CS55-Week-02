@@ -1,0 +1,15 @@
+[
+    {
+        "service":"Twitch",
+        "url":"https://www.twitch.com"
+    },
+    {
+        "service":"Kick",
+        "url":"https://www.kick.com"
+    },
+    {
+        "service":"Youtube",
+        "url":"https://www.youtube.com"
+    }
+
+]

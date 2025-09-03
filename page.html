@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Whatever I feel like this being</title>
+        <!-- Load jquery to use for external json loading -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <!-- load bablel transpiler to convert React's JSX markup to pur JavaScript-->
+        <!-- Note: we only need babel loaded in the browser if we are not using a build system--> 
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <!-- create an element that can be the root element for your react application  -->
+        <div id="myApp"></div>
+        <!-- load our custom cript with react component -->
+        <script data-type="module" data-presets="react" type="text/babel">
+            "use strict";
+
+            // load react as a js module 
+            import React from 'https://cdn.jsdelivr.net/npm/react@19.1.1/+esm';
+            // load createRoot method From ReactDOM/clinet
+            import { createRoot } from 'https://cdn.jsdelivr.net/npm/react-dom@19.1.1/client/+esm';
+                
+            // define a react page component (some JSX that will get react to make html elements)
+            function ProjectList(props) {
+                // return some output for the component using JSX
+                return  <div>
+                            <ol>
+                            {
+                                // use map() to loop thru arry passed in props.list
+                                props.list.map(
+                                    // copy current array value into item and pass wo arrow function
+                                    (item,index) => (
+                                        <li key={index}>
+                                            <a href={item.url}>
+                                                {item.service}
+                                            </a>
+
+                                        </li>
+
+                                    )
+                                )
+
+                            }
+                            </ol>
+                    
+                        </div>
+            }
+            // use jQuery to load JSON
+            // getJSON 2 arguments: URL, a function that receives JSON
+            $.getJSON(
+                "x",
+                function(jsonFromJquery) {
+                    console.log(jsonFromJquery);
+                    // fire up React and build our app
+                    // find html element
+                    const myElement = document.getElementById('myApp');
+                    // reactDOM createRoot() to identify root HTML element for app
+                    const myRoot = createRoot(myElement);
+                    // then call react render() to output componenet into existing element
+                    myRoot.render(
+                        <ProjectList list={jsonFromJquery} />
+                    )
+
+
+                }
+            
+            );
+
+        </script>
+
+    </body>
+</html>
+Good Day Sir
