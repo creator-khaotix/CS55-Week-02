@@ -10,29 +10,18 @@ const requestListener = function(myrequest, myresponse) {
     let contentType;
 
     if (myrequest.url === "/") {
-        filePath = (__dirname + "/newpage.html");
+        filePath = (__dirname + "/newpage2.html");
         contentType = "text/html";
-    } else if (myrequest.url === "/test.json") {
+    } else {
         filePath = (__dirname + "/test.json");
         contentType = "application/json";
-    } else {
-        // Handle other file requests
-        filePath = (__dirname + myrequest.url);
-        // Add logic to determine content type if needed
-        contentType = "text/plain"; 
-    }
-
+    } 
     fs.readFile(filePath)
         .then(contents => {
             myresponse.setHeader("Content-Type", `${contentType}; charset=UTF-8`);
             myresponse.writeHead(200);
             myresponse.end(contents);
         })
-        .catch(err => {
-            myresponse.writeHead(404);
-            myresponse.end("File not found!");
-            console.error(err);
-        });
 };
 
 let myserver = myhttp.createServer(requestListener);
